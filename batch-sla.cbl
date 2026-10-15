@@ -1,0 +1,60 @@
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. BATCH-RECON.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       01 WS-N PIC 99.
+       01 WS-I PIC 99.
+
+       01 WS-AMOUNT PIC 9(5)V99.
+       01 WS-TOTAL PIC 9(7)V99 VALUE 0.
+
+       01 WS-ACTUAL-COUNT PIC 99 VALUE 0.
+       01 WS-EXPECTED-COUNT PIC 99.
+
+       01 WS-EXPECTED-TOTAL PIC 9(7)V99.
+
+       PROCEDURE DIVISION.
+
+           DISPLAY "ENTER NUMBER OF RECORDS:"
+           ACCEPT WS-N
+
+           PERFORM VARYING WS-I FROM 1 BY 1
+               UNTIL WS-I > WS-N
+
+               DISPLAY "ENTER TRANSACTION AMOUNT:"
+               ACCEPT WS-AMOUNT
+
+               ADD 1 TO WS-ACTUAL-COUNT
+               ADD WS-AMOUNT TO WS-TOTAL
+
+           END-PERFORM
+
+           DISPLAY "ENTER EXPECTED COUNT:"
+           ACCEPT WS-EXPECTED-COUNT
+
+           DISPLAY "ENTER EXPECTED TOTAL:"
+           ACCEPT WS-EXPECTED-TOTAL
+
+           DISPLAY "ACTUAL COUNT: "
+                   WS-ACTUAL-COUNT
+
+           DISPLAY "ACTUAL TOTAL: "
+                   WS-TOTAL
+
+           IF WS-ACTUAL-COUNT =
+              WS-EXPECTED-COUNT
+               DISPLAY "COUNT MATCH"
+           ELSE
+               DISPLAY "COUNT MISMATCH"
+           END-IF
+
+           IF WS-TOTAL = WS-EXPECTED-TOTAL
+               DISPLAY "AMOUNT MATCH"
+           ELSE
+               DISPLAY "AMOUNT MISMATCH"
+           END-IF
+
+           STOP RUN.
