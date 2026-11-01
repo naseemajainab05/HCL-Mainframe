@@ -1,0 +1,31 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. CHECKPOINT-VALIDATION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 TOTAL-RECORDS PIC 9(3).
+       01 CHECKPOINT-NO PIC 9(3).
+       01 I PIC 9(3).
+
+       PROCEDURE DIVISION.
+           DISPLAY "ENTER TOTAL RECORDS:"
+           ACCEPT TOTAL-RECORDS
+
+           DISPLAY "ENTER CHECKPOINT NUMBER:"
+           ACCEPT CHECKPOINT-NO
+
+           IF CHECKPOINT-NO > TOTAL-RECORDS
+               DISPLAY "INVALID CHECKPOINT"
+           ELSE
+               DISPLAY "RESTART PROCESSING:"
+
+               PERFORM VARYING I FROM
+                   CHECKPOINT-NO BY 1
+                   UNTIL I >= TOTAL-RECORDS
+
+                   ADD 1 TO I
+                   DISPLAY "PROCESSING RECORD: " I
+               END-PERFORM
+           END-IF
+
+           STOP RUN.
