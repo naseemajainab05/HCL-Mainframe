@@ -1,0 +1,26 @@
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. MONTHLY-INTEREST.
+       
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       
+       01 BALANCE-AMOUNT PIC 9(9)V99.
+       01 ANNUAL-RATE    PIC 9(3)V99.
+       01 MONTHLY-INTEREST PIC 9(9)V99.
+       
+       PROCEDURE DIVISION.
+       
+           DISPLAY "ENTER BALANCE:"
+           ACCEPT BALANCE-AMOUNT
+       
+           DISPLAY "ENTER ANNUAL INTEREST RATE:"
+           ACCEPT ANNUAL-RATE
+       
+           COMPUTE MONTHLY-INTEREST ROUNDED =
+               (BALANCE-AMOUNT * ANNUAL-RATE) / 1200
+       
+           DISPLAY "MONTHLY INTEREST: "
+               MONTHLY-INTEREST
+       
+           STOP RUN.
