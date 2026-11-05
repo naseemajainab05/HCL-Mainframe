@@ -1,0 +1,27 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. RISK-SCORE.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 EXPECTED-COUNT PIC 9(4).
+       01 ACTUAL-COUNT PIC 9(4).
+       01 DIFFERENCE PIC 9(4).
+
+       PROCEDURE DIVISION.
+           DISPLAY "ENTER EXPECTED COUNT:"
+           ACCEPT EXPECTED-COUNT
+
+           DISPLAY "ENTER ACTUAL COUNT:"
+           ACCEPT ACTUAL-COUNT
+
+           IF EXPECTED-COUNT = ACTUAL-COUNT
+               DISPLAY "MATCH"
+           ELSE
+               COMPUTE DIFFERENCE =
+                   FUNCTION ABS(
+                       EXPECTED-COUNT - ACTUAL-COUNT)
+               DISPLAY "MISMATCH"
+               DISPLAY "DIFFERENCE: " DIFFERENCE
+           END-IF
+
+           STOP RUN.
