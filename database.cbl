@@ -1,0 +1,37 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. DATASET-ERROR-HANDLING.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 INPUT-STATUS PIC X.
+       01 OUTPUT-STATUS PIC X.
+       01 READ-STATUS PIC X.
+
+       PROCEDURE DIVISION.
+           DISPLAY "INPUT FILE AVAILABLE? (Y/N):"
+           ACCEPT INPUT-STATUS
+
+           IF INPUT-STATUS = "N"
+               DISPLAY "INPUT FILE OPEN FAILED"
+               STOP RUN
+           END-IF
+
+           DISPLAY "INPUT FILE EMPTY? (Y/N):"
+           ACCEPT READ-STATUS
+
+           IF READ-STATUS = "Y"
+               DISPLAY "INPUT FILE IS EMPTY"
+               STOP RUN
+           END-IF
+
+           DISPLAY "OUTPUT FILE AVAILABLE? (Y/N):"
+           ACCEPT OUTPUT-STATUS
+
+           IF OUTPUT-STATUS = "N"
+               DISPLAY "OUTPUT FILE OPEN FAILED"
+               STOP RUN
+           END-IF
+
+           DISPLAY "BATCH COMPLETED SUCCESSFULLY"
+
+           STOP RUN.
